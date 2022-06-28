@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/codemirror/lib/codemirror.css" />
     <link rel="stylesheet" href="bower_components/hotbox/hotbox.css" />
-    <link rel="stylesheet" href="node_modules/kityminder-core/dist/kityminder.core.css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.css">
     <link rel="stylesheet" href="bower_components/color-picker/dist/color-picker.css" />
 	<!-- endbower -->
 
@@ -23,21 +23,9 @@
             height: 100%;
             overflow: hidden;
         }
-        h1.editor-title {
-            background: #393F4F;
-            color: white;
-            margin: 0;
-            height: 40px;
-            font-size: 14px;
-            line-height: 40px;
-            font-family: 'Hiragino Sans GB', 'Arial', 'Microsoft Yahei';
-            font-weight: normal;
-            padding: 0 20px;
-        }
     </style>
 </head>
 <body ng-app="kityminderDemo" ng-controller="MainController">
-    <h1 class="editor-title">KityMinder Editor - Powered By FEX</h1>
     <kityminder-editor on-init="initEditor(editor, minder)"></kityminder-editor>
 </body>
 
@@ -55,14 +43,18 @@
 <script src="bower_components/codemirror/addon/mode/overlay.js"></script>
 <script src="bower_components/codemirror/mode/gfm/gfm.js"></script>
 <script src="bower_components/angular-ui-codemirror/ui-codemirror.js"></script>
-<script src="bower_components/marked/lib/marked.js"></script>
-<script src="node_modules/kity/dist/kity.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@4.0.17/lib/marked.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script>
 <script src="bower_components/hotbox/hotbox.js"></script>
 <script src="bower_components/json-diff/json-diff.js"></script>
-<script src="node_modules/kityminder-core/dist/kityminder.core.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script>
 <script src="bower_components/color-picker/dist/color-picker.js"></script>
 <script src="bower_components/seajs/dist/sea.js"></script>
 <!-- endbower -->
+
+
+
+
 
 <script src="ui/kityminder.app.js"></script>
 <script src="ui/service/commandBinder.service.js"></script>
@@ -113,6 +105,13 @@
 					window.minder = minder;
 				};
 			});
+
+	window.addEventListener('message',e=>{
+	    if(e.data.type!='mind'){
+	        return
+        }
+        window.editor.minder.importJson(e.data.data)
+    })
 
 </script>
 

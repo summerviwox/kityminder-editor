@@ -49,6 +49,13 @@ angular.module('kityminderEditor')
                    });
                };
 
+               scope.save = function () {
+                   window.postMessage({
+                       type:'mind',
+                       data:window.editor.minder.exportJson(),
+                   });
+               };
+
                function closeTopTab() {
                    var $tabContent = $('.tab-content');
                    var $minderEditor = $('.minder-editor');
