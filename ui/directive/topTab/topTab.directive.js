@@ -50,7 +50,8 @@ angular.module('kityminderEditor')
                };
 
                scope.save = function () {
-                   window.postMessage({
+                   console.log(window.editor.minder.exportJson());
+                   window.parent.postMessage({
                        type:'mind',
                        data:window.editor.minder.exportJson(),
                    });
